@@ -16,7 +16,7 @@ $('.like').on('click', function (event) {
         if (isLike) {
             event.target.nextElementSibling.innerText = 'Dislike';
         } else {
-            event.target.preventElementSibling.innerText = 'like';
+            event.target.previousElementSibling.innerText = 'like';
         }
     });
 });

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Like;
 use Auth;
+use Log;
 
 class PostController extends Controller
 {
@@ -15,7 +16,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         $posts = Post::orderBy('created_at', 'desc')->get();
         return view('post.index', ['posts' => $posts]);
     }
@@ -33,6 +34,7 @@ class PostController extends Controller
 
         $user = Auth::user();
         $like = $user->likes()->where('post_id', $post_id)->first();
+
         if ($like) {
             $already_like = $like->like;
             $update = true;
